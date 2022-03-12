@@ -15,14 +15,18 @@ So today it makes sense to do all the programming only for Linux.
 ## standard modern GUI
 
 The "elephant in the room" is the GUI. Every OS has on purpose made the GUI different and completely incompatible. Sadly!
-But we have a strong international standard for GUI that works literally everywhere: it is HTML+CSS+JavascriptEngine. I explicitly didn't say Javascript, let call it by its true name **ECMAScript**, because it is an abomination. Fortunately we have now [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly) abbreviated as [WASM](https://webassembly.org/) to save the day.  
+But we have a strong international standard for GUI that works literally everywhere: it is HTML+CSS+JavascriptEngine.  
+I explicitly didn't say Javascript, let call it by its true name **ECMAScript**, because it is an abomination.  
+Fortunately we have now [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly) abbreviated as [WASM](https://webassembly.org/) to save the day.  
+We can finally make client programs for the browser in some "normal" programming language like Rust and many others.
 
 ## Win10
 
-Win10 is so ubiquitous that I have nothing interesting to say. It works just fine with all the drivers and peripherals and it comes preinstalled on most of the notebooks. We can say it is a winner OS in the desktop/notebook segment. In the enterprize world Microsoft still has a firm grip with their Office suite. Blue collar workers are just hooked to it like drug addicts.  
+Win10 is so ubiquitous that I have nothing interesting to say. It works just fine with all the drivers and peripherals and it comes preinstalled on most of the notebooks. We can say it is a winner OS in the desktop/notebook segment. In the enterprize world Microsoft still has a firm grip with their Office suite. Blue collar workers are just hooked to it like drug addicts even when there are good alternatives.  
 But Windows lost completely in the server segment and shamefully in the smartphone segment.  
 We "must" use it on notebooks because of the drivers, but it is slowly dying.  
-I don't have any opinion of Win11. Microsoft "promised" that Win10 was the last version of Windows and the number will last forever. In the background there will be minor and major updates. They broke their promise. I think nobody really loves Win11.  It looks more like they try to push people away from Windows on purpose.  
+I don't have any opinion of Win11. Microsoft "promised" that Win10 was the last version of Windows and the number will last forever and be free. In the background there will be minor and major updates. They broke their promise. I think nobody really loves Win11.  
+It looks more like they are trying to push people away from Windows on purpose.  
 
 ## Installing WSL2  
   
@@ -37,36 +41,31 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 # restart your machine. Set WSL2 as default
 wsl --set-default-version 2
-# I get the error: WSL 2 requires an update to its kernel component. 
-# visit https://aka.ms/wsl2kernel and do the update
-# I choose to install the Debian distro:
-https://www.microsoft.com/sl-si/p/debian/9msvkqc78pk6?rtc=1
-# give it a password you will remember
-# then in linux bash
+```
+
+I get the error: WSL 2 requires an update to its kernel component.  
+Visit <https://aka.ms/wsl2kernel> and do the update.  
+
+## Debian11 - Bullseye
+
+Debian is considered the grandfather of Linux based operating systems. The Linux OSes are called "distribution" or "distro". All of them have in common the Linux Kernel developed firstly by Linux Torvald, but they differ in other components that make an Operating system.  
+Debian is conservative in its release cycle to ensure high stability. Some say that it is boringly stable ;-) I am old and I like stable.  
+Some distros are derived from Debian and share a lot with it. Everybody have heard for Ubuntu, a big Linux popularity success for desktops.  
+The new version of Debian is 11. Every version has its unique name, the version 11 is called Bullseye. Nice name.  
+Use the Microsoft Store to install Debian inside WSL2: <https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6>  
+Now we can open the Debian bash terminal using the provided icon or we can type `wsl` or `debian` in the start menu, command prompt or powershell terminal. This Debian is without the GUI desktop. We could additionally install it, but we will rarely need it. A lot of Linux programs for programmers work just fine in the non-GUI mode inside a bash terminal.  
+The windows User is automatically also a Debian user.  
+
+In the bash terminal we can type these commands to update/upgrade Debian packages:  
+
+```bash
 sudo apt update
 sudo apt dist-upgrade
 ```
 
 WSL2 works very fast with its own filesystem.  
 From Linux we can access the win10 filesystem mounted on `/mnt/c/`, but this is very slow.  
-From Windows we can access the linux files on `\\wsl$\Debian\`.  But sometimes we got an additional annoying file "*.attr" for attributes that differ on the 2 filesystems.  
-
-## Debian11 - Bullseye
-
-Debian is considered the grandfather of Linux based operating systems. The Linux OSes are called "distribution" or "distro". All of them have in common the Linux Kernel developed firstly by Linux Torvald, but they differ in other components that make an Operating system.  
-Debian is conservative in its release cycle to ensure high stability. Some say that it is boringly stable ;-) I am old and I like stable.  
-Some distros are derived from Debian and share a lot with it. Everybody have heard for Ubuntu, a big Linux popularity success.  
-The new version of Debian is 11. Every version has its unique name, the version 11 is called Bullseye. Nice name.  
-Use the Microsoft Store to install Debian inside WSL2: <https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6>  
-Now we can open the Debian bash terminal using the provided icon or we can type `wsl` or `debian` in the start menu, command prompt or powershell terminal. This Debian is without the GUI desktop. We could additionally install it, but we will rarely need it. A lot of Linux programs work just fine in the non-GUI mode inside a bash terminal.  
-The windows User is automatically also a Debian user.  
-
-In the bash terminal we can type these commands to update our Debian packages:  
-
-```bash
-sudo apt update
-sudo apt dist-upgrade
-```
+From Windows we can access the linux files on `\\wsl$\Debian\`.  But sometimes we got an additional annoying file "*.attr" for attributes that differ on the 2 filesystems. I always delete it.  
 
 ## Quirks
 
