@@ -1,5 +1,8 @@
 # win10_wsl2_debian11
 
+**Linux everywhere**  
+***version: 1.0  date: 2022-03-01 author: [Dev_Bestia](https://bestia.dev) repository: [GitHub](https://github.com/LucianoBestia/win10_wsl2_debian11)***  
+
 For 30 years of my professional life I programmed in Windows. It was good.  
 I am on a long vacation now and is time to learn something new.  
 
