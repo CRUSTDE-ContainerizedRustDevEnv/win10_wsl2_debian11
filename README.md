@@ -63,12 +63,33 @@ In the bash terminal we can type these commands to update/upgrade Debian package
 
 ```bash
 sudo apt update
-sudo apt dist-upgrade
+sudo apt full-upgrade
+cat /etc/debian_version
+# 11.3
 ```
 
 WSL2 works very fast with its own filesystem.  
 From Linux we can access the win10 filesystem mounted on `/mnt/c/`, but this is very slow.  
 From Windows we can access the linux files on `\\wsl$\Debian\`.  But sometimes we got an additional annoying file "*.attr" for attributes that differ on the 2 filesystems. I always delete it.  
+
+## Removing Debian
+
+If you want a fresh new installation of Debian it is easy to remove the existing one in `cmd prompt`:
+
+```bash
+# get the exact distro name
+wsl -l -v
+wsl --unregister Debian
+```
+
+## Removing WSL2
+
+If you need to remove WSL2:
+Open Settings on Windows 10
+Click on Apps.
+Click on Apps & features.
+Select the Windows Subsystem for Linux update item and click the Uninstall button
+Click the Uninstall button again
 
 ## Quirks
 
