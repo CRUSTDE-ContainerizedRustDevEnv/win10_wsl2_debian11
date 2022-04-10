@@ -6,6 +6,9 @@
 For 30 years of my professional life I programmed in Windows. It was good.  
 I am on a long vacation now and is time to learn something new.  
 
+Watch the tutorial video on youtube:
+<https://youtu.be/3bmx_4DW5_A>  
+
 ## Linux everywhere
 
 My conclusion is that Windows (and MacOS) should just die a long death and be replaced by Linux.  
@@ -55,7 +58,10 @@ Debian is considered the grandfather of Linux based operating systems. The Linux
 Debian is conservative in its release cycle to ensure high stability. Some say that it is boringly stable ;-) I am old and I like stable.  
 Some distros are derived from Debian and share a lot with it. Everybody have heard for Ubuntu, a big Linux popularity success for desktops.  
 The new version of Debian is 11. Every version has its unique name, the version 11 is called Bullseye. Nice name.  
-Use the Microsoft Store to install Debian inside WSL2: <https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6>  
+Use the Microsoft Store to install Debian inside WSL2:  
+
+<https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6>  
+
 Now we can open the Debian bash terminal using the provided icon or we can type `wsl` or `debian` in the start menu, command prompt or powershell terminal. This Debian is without the GUI desktop. We could additionally install it, but we will rarely need it. A lot of Linux programs for programmers work just fine in the non-GUI mode inside a bash terminal.  
 The windows User is automatically also a Debian user.  
 
