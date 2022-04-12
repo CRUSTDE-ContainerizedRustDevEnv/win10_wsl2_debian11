@@ -6,7 +6,7 @@
 For 30 years of my professional life I programmed in Windows. It was good.  
 I am on a long vacation now and is time to learn something new.  
 
-Watch the tutorial video on youtube: <https://youtu.be/uThTkRclohQ>  
+Watch the tutorial video on youtube: <https://bestia.dev/youtube/win10_wsl2_debian11.html>  
 
 ## Linux everywhere
 
