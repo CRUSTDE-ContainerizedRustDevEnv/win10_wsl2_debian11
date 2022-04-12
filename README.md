@@ -69,7 +69,7 @@ In the bash terminal we can type these commands to update/upgrade Debian package
 
 ```bash
 sudo apt update
-sudo apt full-upgrade
+sudo apt -y full-upgrade
 cat /etc/debian_version
 # 11.3
 ```
