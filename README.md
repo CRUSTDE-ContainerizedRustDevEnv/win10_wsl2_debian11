@@ -39,9 +39,9 @@ It looks more like they are trying to push people away from Windows on purpose.
 WSL2 is a revolution. With it I have a lightweight virtual machine with a true Linux kernel. On my Lenovo notebook I have Win10 and it works fine with all the drivers and peripherals, but now I have also Linux, so I can do some serious programming for the Linux cloud servers. Not just one Linux, I can have multiple Linux OS simultaneously on the same machine because they run in a VM.  
 Let install/enable it on Win10:  
 <https://docs.microsoft.com/en-us/windows/wsl/install-win10#update-to-wsl-2>  
+Open `PowerShell Run as Administrator`:  
 
 ```powershell
-# Open PowerShell as Administrator
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 # restart and update to WSL2
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
@@ -90,18 +90,17 @@ wsl --unregister Debian
 
 ## Removing WSL2
 
-If you need to remove WSL2:
-Open Settings on Windows 10
-Click on Apps.
-Click on Apps & features.
-Select the Windows Subsystem for Linux update item and click the Uninstall button
-Click the Uninstall button again
+If you need to remove WSL2 open `PowerShell Run as Administrator`:
+
+```powershell
+Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
 
 ## Quirks
 
 ### network connection after sleep
 
-After putting the laptop to sleep, sometimes the WSL2 does not work right. When I need to use `localhost` or `127.0.0.1` connection from Win10 to a Linux program, the connection is broken. I have to restart the WSL in PowerShell Run as administrator with  
+After putting the laptop to sleep, sometimes the WSL2 does not work right. When I need to use `localhost` or `127.0.0.1` connection from Win10 to a Linux program, the connection is broken. I have to restart the WSL in `PowerShell Run as administrator` with  
 `Get-Service LxssManager | Restart-Service`.  
 Not nice and very difficult to discover because WSL2 is running just fine, except this.  
 
