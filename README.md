@@ -6,8 +6,7 @@
 For 30 years of my professional life I programmed in Windows. It was good.  
 I am on a long vacation now and is time to learn something new.  
 
-Watch the tutorial video on youtube:
-<https://youtu.be/3bmx_4DW5_A>  
+Watch the tutorial video on youtube: <https://youtu.be/uThTkRclohQ>  
 
 ## Linux everywhere
 
