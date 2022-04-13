@@ -95,6 +95,10 @@ If you need to remove WSL2 open `PowerShell Run as Administrator`:
 Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
+## Read more
+
+Read how I create a complete [Rust development environment inside a Docker Container](https://github.com/bestia-dev/docker_rust_development) and how I use my [Rust Development Environment](https://github.com/bestia-dev/development_environment).  
+
 ## Quirks
 
 ### network connection after sleep
