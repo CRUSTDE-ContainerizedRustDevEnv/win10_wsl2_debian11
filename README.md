@@ -8,7 +8,7 @@ I am on a long vacation now and is time to learn something new.
 
 Watch the tutorial video on youtube:  
 <!-- markdownlint-disable MD033 -->
-[<img src="https://github.com/bestia-dev/win10_wsl2_debian11/raw/main/images/thumbnail.png" width="50%">](https://bestia.dev/youtube/win10_wsl2_debian11.html)
+[<img src="https://github.com/bestia-dev/win10_wsl2_debian11/raw/main/images/thumbnail.png" width="400px">](https://bestia.dev/youtube/win10_wsl2_debian11.html)
 <!-- markdownlint-enable MD033 -->
 
 ## Linux everywhere
