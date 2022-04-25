@@ -7,7 +7,8 @@ For 30 years of my professional life I programmed in Windows. It was good.
 I am on a long vacation now and is time to learn something new.  
 
 Watch the tutorial video on youtube:  
-[![youtube](https://github.com/bestia-dev/win10_wsl2_debian11/raw/main/images/thumbnail.png youtube)](https://bestia.dev/youtube/win10_wsl2_debian11.html)
+
+[[https://github.com/bestia-dev/win10_wsl2_debian11/raw/main/images/thumbnail.png|width=100px]]
 
 ## Linux everywhere
 
