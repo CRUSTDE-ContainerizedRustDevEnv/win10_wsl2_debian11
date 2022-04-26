@@ -3,6 +3,8 @@
 **Linux everywhere ! Install wsl2 and debian11 on win10**  
 ***version: 1.0  date: 2022-03-01 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/win10_wsl2_debian11)***  
 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fbestia-dev%2Fwin10_wsl2_debian11&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+
 For 30 years of my professional life I programmed in Windows. It was good.  
 I am on a long vacation now and is time to learn something new.  
 
