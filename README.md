@@ -1,4 +1,4 @@
-# 1. Linux everywhere! (win10_wsl2_debian11) (2022-03)
+# 01. Tutorial to install Linux on Windows. Linux everywhere! (win10_wsl2_debian11) (2022-03)
 
 **Linux everywhere ! Install wsl2 and debian11 on win10**  
 ***version: 1.0  date: 2022-03-01 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/win10_wsl2_debian11)***  
