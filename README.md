@@ -1,7 +1,7 @@
 # win10_wsl2_debian11
 
 **01. Tutorial to install Linux on Windows. Linux everywhere! (win10_wsl2_debian11) (2022-03)**  
-***version: 1.0  date: 2022-03-01 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/win10_wsl2_debian11)***  
+***version: 1.0  date: 2022-09-03 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/win10_wsl2_debian11)***  
 
 ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/556625040.svg)
 
@@ -52,12 +52,23 @@ Open `PowerShell Run as Administrator`:
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 # restart and update to WSL2
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-# restart your machine. Set WSL2 as default
+# MANDATORY RESTART YOUR MACHINE !
+# if not, the wsl --help command will not have the --set-default-version argument !
+# Set WSL2 as default
 wsl --set-default-version 2
 ```
 
 I get the error: WSL 2 requires an update to its kernel component.  
 Visit <https://aka.ms/wsl2kernel> and do the update.  
+
+```powershell
+# I can update the wsl now
+wsl --update
+# then shutdown the wsl for update to take effect
+wsl --shutdown
+# 
+wsl --list --online
+```
 
 ## Debian11 - Bullseye
 
@@ -69,6 +80,15 @@ Use the Microsoft Store to install Debian inside WSL2:
 
 <https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6>  
 
+or in powershell a few lines:
+
+```powershell
+# list the distros
+wsl --list --online
+# install Debian
+wsl --install -d Debian
+```
+
 Now we can open the Debian bash terminal using the provided icon or we can type `wsl` or `debian` in the start menu, command prompt or powershell terminal. This Debian is without the GUI desktop. We could additionally install it, but we will rarely need it. A lot of Linux programs for programmers work just fine in the non-GUI mode inside a bash terminal.  
 The windows User is automatically also a Debian user.  
 
@@ -78,7 +98,7 @@ In the bash terminal we can type these commands to update/upgrade Debian package
 sudo apt update
 sudo apt -y full-upgrade
 cat /etc/debian_version
-# 11.3
+# 11.4
 ```
 
 WSL2 works very fast with its own filesystem.  
@@ -89,7 +109,7 @@ From Windows we can access the linux files on `\\wsl$\Debian\`.  But sometimes w
 
 If you want a fresh new installation of Debian it is easy to remove the existing one in `cmd prompt`:
 
-```bash
+```cmd
 # get the exact distro name
 wsl -l -v
 wsl --unregister Debian
