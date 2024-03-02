@@ -1,3 +1,5 @@
+[//]: # (auto_md_to_doc_comments segment start A)
+
 # win10_wsl2_debian11
 
 **01. Tutorial to install Linux on Windows. Linux everywhere! (win10_wsl2_debian11) (2022-03)**  
@@ -167,3 +169,5 @@ So I can drink a free beer for your health :-)
 [//github.com/bestia-dev](https://github.com/bestia-dev)  
 [//bestiadev.substack.com](https://bestiadev.substack.com)  
 [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
+
+[//]: # (auto_md_to_doc_comments segment end A)
