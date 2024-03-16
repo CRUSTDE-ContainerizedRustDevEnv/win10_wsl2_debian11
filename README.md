@@ -94,8 +94,8 @@ wsl --list --online
 wsl --install -d Debian
 ```
 
-Now we can open the Debian bash terminal using the provided icon or we can type `wsl` or `Debian` in the start menu, command prompt or PowerShell terminal. This Debian is without the GUI desktop. We could additionally install it, but we will rarely need it. A lot of Linux programs for programmers work just fine in the non-GUI mode inside a bash terminal.  
-The windows User is automatically also a Debian user.  
+It takes a minute! Now we can open the Debian bash terminal using the provided icon or we can type `wsl` or `Debian` in the start menu, command prompt or PowerShell terminal. This Debian is without the GUI desktop. We could additionally install it, but we will rarely need it. A lot of Linux programs for programmers work just fine in the non-GUI mode inside a bash terminal.  
+The Windows user is automatically also a Debian user.  
 
 In the bash terminal we can type these commands to update/upgrade Debian packages:  
 
@@ -108,7 +108,7 @@ cat /etc/debian_version
 
 WSL2 works very fast with its own filesystem.  
 From Linux, we can access the win10 filesystem mounted on `/mnt/c/`, but this is very slow.  
-From Windows, we can access the Linux files on `\\wsl$\Debian\`.  But sometimes we got an additional annoying file "*.attr" for attributes that differ on the 2 filesystems. I always delete it.  
+From Windows, we can access the Linux files on `\\wsl$\Debian\`.  But sometimes when we copy files, we get an additional annoying file "*.attr" for attributes that differ on the 2 filesystems. I always delete it.  
 
 ## Removing Debian
 
@@ -130,7 +130,85 @@ Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-
 
 ## Read more
 
-Read how I create a complete [Rust development environment inside a Docker Container](https://github.com/bestia-dev/docker_rust_development) and how I use my [Rust Development Environment](https://github.com/bestia-dev/development_environment).  
+Read how I create a complete [CRDE Containerized Rust Development Environment](https://github.com/bestia-dev/docker_rust_development) and how I configure and use my [Rust](https://github.com/bestia-dev/development_environment) Development Environment](https://github.com/bestia-dev/development_environment).  
+
+## Updates 2024 and new knowledge
+
+Debian is now 12 bookworm. But that doesn't change much. It is easy to uninstall the old Debian and install the new one just with the same commands.  
+First, store the important configuration of Debian somehow and restore it later.  
+The same commands will install the latest version. That takes just a minute! Great!.  
+
+## WSL2: disable automount of Windows drives
+
+My main OS Windows can see the files inside WSL using paths like this: `\\wsl$\Debian\home\` or `\\wsl.localhost\Debian\home\`. I think this is fine. The host can see the guest.
+
+I don't like that programs in WSL can see the files of my host OS Windows. The win drives are mounted like `/mnt/c/`, `/mnt/d/`,... It is called WSL automount. I want to disable that.  
+For "security" I don't want WSL to see Windows drives, folders and files by default. It is never good that the guest can see the host. This access is even read/write. Bad.
+
+There is a half-baked solution from Microsoft, but workable for my use case. https://tonym.us/improve-wsl-security-with-read-only-filesystem.html  
+A malicious actor could still mount any Windows folder he wants if he gets admin privilege in WSL because then he can change the `/etc/wsl.conf` file.  
+This is not a good sandbox. It just makes exploits a little bit trickier, but possible nonetheless.  
+https://github.com/microsoft/WSL/issues/7236  
+Microsoft always does everything unsafe by default! On purpose. Bad Microsoft!
+
+Write in the Debian file `/etc/wsl.conf`
+
+```conf
+# Automatically mount Windows drive when the distribution is launched
+[automount]
+
+# disable auto-mounting of win drives
+enabled = false
+
+# process fstab entries to allow some folders to be mounted
+mountFsTab = true
+
+# disable launching windows exe files
+[interop]
+enabled = false
+appendWindowsPath = false
+```
+
+After `wsl --shutdown` and restart, the win drives are not automounted anymore, but the mounting points are still here.  
+It is delicate to remove a mounting point. If it is still mounted, it would delete all the data inside. Very bad design.
+
+```bash
+$ ls /mnt
+c  d  wsl  wslg
+
+# first check 100% that it is not mounted:
+$ umount /mnt/c
+umount: /mnt/c: not mounted.
+
+# then remove the mount point:
+sudo rm -r /mnt/c
+
+# first check 100% that it is not mounted:
+$ umount /mnt/d
+umount: /mnt/d: not mounted.
+
+# then remove the mount point:
+sudo rm -r /mnt/d
+
+# mounting points are now deleted
+$ ls /mnt
+wsl  wslg
+```
+
+Now when starting WSL I get a stupid error:
+<3>WSL (9) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Users\luciano
+And I don't know from where it comes from.
+The appendWindowsPath is already set to false. Usually, this is the main reason for errors like that.  
+
+To be on the super cautious side I will also disable the `virtio9p` protocol that is used by wsl to access the files in windows. At least I hope I understood that right.  
+
+In Windows create the file `~/.wslconfig`
+
+```conf
+[wsl2]
+# disable wsl from accessing windows files
+virtio9p=false
+```
 
 ## Quirks
 

@@ -16,8 +16,11 @@
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
         "Alla",
+        "automount",
+        "automounted",
         "bestia",
         "bestiadev",
+        "CRDE",
         "dism",
         "distro",
         "distros",
@@ -30,6 +33,9 @@
         "rustlang",
         "substack",
         "Torvald",
+        "virtio",
+        "wslconfig",
+        "wslg",
         "zdravje"
     ]
 }
