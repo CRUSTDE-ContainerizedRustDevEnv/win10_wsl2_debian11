@@ -130,7 +130,7 @@ Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-
 
 ## Read more
 
-Read how I create a complete [CRDE Containerized Rust Development Environment](https://github.com/bestia-dev/docker_rust_development) and how I configure and use my [Rust](https://github.com/bestia-dev/development_environment) Development Environment](https://github.com/bestia-dev/development_environment).  
+Read how I create a complete [CRUSTDE Containerized Rust Development Environment](https://github.com/bestia-dev/docker_rust_development) and how I configure and use my [Rust](https://github.com/bestia-dev/development_environment) Development Environment](https://github.com/bestia-dev/development_environment).  
 
 ## Updates 2024 and new knowledge
 
