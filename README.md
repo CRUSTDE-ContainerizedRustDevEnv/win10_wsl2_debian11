@@ -3,7 +3,7 @@
 # win10_wsl2_debian11
 
 **01. Tutorial to install Linux on Windows. Linux everywhere! (win10_wsl2_debian11) (2022-03)**  
-***version: 1.0  date: 2022-09-03 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/win10_wsl2_debian11)***  
+***version: 1.0  date: 2022-09-03 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/CRUSTDE-Containerized-Rust-Dev-Env/win10_wsl2_debian11)***  
 
  ![maintained](https://img.shields.io/badge/maintained-green)
  ![ready_for_use](https://img.shields.io/badge/ready_for_use-green)
@@ -134,7 +134,7 @@ Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-
 ## Read more
 
 Read how I create a complete [
-TDE Containerized Rust Development Environment](https://github.com/bestia-dev/docker_rust_development) and how I configure and use my [Rust](https://github.com/bestia-dev/development_environment) Development Environment](https://github.com/bestia-dev/development_environment).  
+TDE Containerized Rust Development Environment](https://github.com/CRUSTDE-Containerized-Rust-Dev-Env/docker_rust_development) and how I configure and use my [Rust](https://github.com/CRUSTDE-Containerized-Rust-Dev-Env/development_environment) Development Environment](https://github.com/CRUSTDE-Containerized-Rust-Dev-Env/development_environment).  
 
 ## Updates 2024 and new knowledge
 
