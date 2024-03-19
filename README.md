@@ -10,6 +10,9 @@
  ![tutorial](https://img.shields.io/badge/tutorial-yellow)
  ![win10_wsl2_debian11](https://bestia.dev/webpage_hit_counter/get_svg_image/556625040.svg)
 
+ ![logo](https://raw.githubusercontent.com/CRUSTDE-Containerized-Rust-Dev-Env/CRUSTDE-Containerized-Rust-Dev-Env/main/images/crustde_250x250.png)
+ win10_wsl2_debian11 is a member of the [CRUSTDE-Containerized-Rust-Dev-Env](https://github.com/orgs/CRUSTDE-Containerized-Rust-Dev-Env/repositories?q=sort%3Aname-asc) project.
+
 Hashtags: #rustlang #tutorial  
 My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 
@@ -130,7 +133,8 @@ Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-
 
 ## Read more
 
-Read how I create a complete [CRUSTDE Containerized Rust Development Environment](https://github.com/bestia-dev/docker_rust_development) and how I configure and use my [Rust](https://github.com/bestia-dev/development_environment) Development Environment](https://github.com/bestia-dev/development_environment).  
+Read how I create a complete [
+TDE Containerized Rust Development Environment](https://github.com/bestia-dev/docker_rust_development) and how I configure and use my [Rust](https://github.com/bestia-dev/development_environment) Development Environment](https://github.com/bestia-dev/development_environment).  
 
 ## Updates 2024 and new knowledge
 
