@@ -214,6 +214,67 @@ In Windows create the file `~/.wslconfig`
 virtio9p=false
 ```
 
+## SSH
+
+Install ssh client:
+
+```bash
+sudo apt-get install openssh-client
+```
+
+## .bashrc
+
+Add these lines to ~/.bashrc to activate ssh-agnet:
+
+```bash
+
+# Luciano 2024-03-19: I added some commands for my configuration of Debian ( in WSL2 on Windows)
+# ~/.bashrc is executed by bash for non-login interactive shells every time.  (not for login non-interactive scripts)
+# Append to ~/.bashrc
+# Then if you don't want to restart the terminal and use immediately, run
+# source ~/.bashrc
+# I tried to add this to ~/.bash_profile, but it didn't work well.
+
+# alias for the very often used command ls
+alias l="ls -al"
+alias ll="ls -l"
+
+# Added to bashrc for easy sshadd and postgres
+export PATH=$HOME/bin:$PATH
+
+# disable XON/XOFF flow control and ctrl-s
+stty -ixon
+bind -r "\C-s"  
+# disabel ctrl-b, because I want VSCode to use it.
+bind -r "\C-b"  
+
+# region: ssha-agent and ssh-add
+
+SSH_ENV="$HOME/.ssh/agent-environment"
+
+function start_agent {
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
+
+echo "Use the global command 'sshadd' to simply add your private SSH keys to ssh-agent $SSH_AGENT_PID."
+alias sshadd="echo sh ~/.ssh/sshadd.sh; sh ~/.ssh/sshadd.sh"
+
+# region: ssha-agent and ssh-add
+```
+
 ## Quirks
 
 ### network connection after sleep
