@@ -106,7 +106,7 @@ In the bash terminal we can type these commands to update/upgrade Debian package
 sudo apt update
 sudo apt -y full-upgrade
 cat /etc/debian_version
-# 11.4
+# 12.5
 ```
 
 WSL2 works very fast with its own filesystem.  
@@ -131,11 +131,6 @@ If you need to remove WSL2 open `PowerShell Run as Administrator`:
 Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
-## Read more
-
-Read how I create a complete [
-TDE Containerized Rust Development Environment](https://github.com/CRUSTDE-Containerized-Rust-Dev-Env/docker_rust_development) and how I configure and use my [Rust](https://github.com/CRUSTDE-Containerized-Rust-Dev-Env/development_environment) Development Environment](https://github.com/CRUSTDE-Containerized-Rust-Dev-Env/development_environment).  
-
 ## Updates 2024 and new knowledge
 
 Debian is now 12 bookworm. But that doesn't change much. It is easy to uninstall the old Debian and install the new one just with the same commands.  
@@ -149,13 +144,23 @@ My main OS Windows can see the files inside WSL using paths like this: `\\wsl$\D
 I don't like that programs in WSL can see the files of my host OS Windows. The win drives are mounted like `/mnt/c/`, `/mnt/d/`,... It is called WSL automount. I want to disable that.  
 For "security" I don't want WSL to see Windows drives, folders and files by default. It is never good that the guest can see the host. This access is even read/write. Bad.
 
-There is a half-baked solution from Microsoft, but workable for my use case. https://tonym.us/improve-wsl-security-with-read-only-filesystem.html  
+There is a half-baked solution from Microsoft, but workable for my use case.  
 A malicious actor could still mount any Windows folder he wants if he gets admin privilege in WSL because then he can change the `/etc/wsl.conf` file.  
 This is not a good sandbox. It just makes exploits a little bit trickier, but possible nonetheless.  
 https://github.com/microsoft/WSL/issues/7236  
 Microsoft always does everything unsafe by default! On purpose. Bad Microsoft!
 
-Write in the Debian file `/etc/wsl.conf`
+First, disable the `virtio9p` protocol that is used by WSL to access the files in Windows. At least I hope I understood that right.  
+
+In Windows create the file `~/.wslconfig`
+
+```conf
+[wsl2]
+# disable wsl from accessing windows files
+virtio9p=false
+```
+
+Second, write in the Debian file `/etc/wsl.conf`
 
 ```conf
 # Automatically mount Windows drive when the distribution is launched
@@ -177,42 +182,83 @@ After `wsl --shutdown` and restart, the win drives are not automounted anymore, 
 It is delicate to remove a mounting point. If it is still mounted, it would delete all the data inside. Very bad design.
 
 ```bash
-$ ls /mnt
-c  d  wsl  wslg
+ls /mnt
+# c  d  wsl  wslg
 
-# first check 100% that it is not mounted:
-$ umount /mnt/c
-umount: /mnt/c: not mounted.
+# first check 100% that it is not mounted
+sudo umount /mnt/c
+# umount: /mnt/c: not mounted
 
-# then remove the mount point:
+# only then remove the mount point
 sudo rm -r /mnt/c
 
-# first check 100% that it is not mounted:
-$ umount /mnt/d
-umount: /mnt/d: not mounted.
+# first check 100% that it is not mounted
+sudo umount /mnt/d
+# umount: /mnt/d: not mounted
 
-# then remove the mount point:
+# only then remove the mount point
 sudo rm -r /mnt/d
 
-# mounting points are now deleted
-$ ls /mnt
-wsl  wslg
+# mounting points c and d are now deleted
+ls /mnt
+# wsl  wslg
 ```
 
-Now when starting WSL I get a stupid error:
-<3>WSL (9) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Users\luciano
-And I don't know from where it comes from.
-The appendWindowsPath is already set to false. Usually, this is the main reason for errors like that.  
+Now when starting WSL I get a stupid error:  
+<3>WSL (9) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Users\luciano  
+And I don't know from where it comes from.  
+The `appendWindowsPath` is already set to false. Usually, this is the main reason for errors like that.  
 
-To be on the super cautious side I will also disable the `virtio9p` protocol that is used by wsl to access the files in windows. At least I hope I understood that right.  
+## Git and SSH
 
-In Windows create the file `~/.wslconfig`
+Git and SSH are essential to developers. We need to securely access our remote repositories on GitHub and our production Web servers. All over SSH. The installation of Git brings SSH with it.
+Install Git in Debian:
+
+```bash
+sudo apt install git
+git --version
+# git version 2.39.2
+ssh -V
+# OpenSSH_9.2p1 Debian-2+deb12u2, OpenSSL 3.0.11 19 Sep 2023
+
+# config git globally
+git config --global user.name "Your Name"
+git config --global user.email "youremail@yourdomain.com"
+# for windows only:
+git config --global core.eol lf
+git config --global core.autocrlf input
+# I like to use the nano editor in the terminal
+git config --global core.editor "nano"
+git config --global -l
+```
+
+Config SSH:
+
+```bash
+mkdir -vp ~/.ssh
+chmod 700 ~/.ssh
+# From Windows from your encrypted vault, copy your existing ssh keys (private and public) for Github and your web server into ~/.ssh. Mine are called github_com_git_ssh_1 and bestia_dev_luciano_bestia_ssh_1. 
+# Windows can read/write the Linux Filesystem. Linux should NOT read/write the Windows file system. Host->Guest ok. Guest->Host no-no.
+# config appropriate security for the private key files
+sudo chmod 600 ~/.ssh/github_com_git_ssh_1
+sudo chmod 600 ~/.ssh/bestia_dev_luciano_bestia_ssh_1
+# create a config file
+nano ~/.ssh/config
+```
 
 ```conf
-[wsl2]
-# disable wsl from accessing windows files
-virtio9p=false
+Host github_com_git_ssh_1
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github_com_git_ssh_1
+
+Host bestia_dev_luciano_bestia_ssh_1
+    HostName bestia.dev
+    User luciano_bestia
+    IdentityFile ~/.ssh/bestia_dev_luciano_bestia_ssh_1
 ```
+
+Add `sshadd.sh` file `nano ~/.ssh/sshadd.sh` from [here](ssh/sshadd.sh)
 
 ## Quirks
 

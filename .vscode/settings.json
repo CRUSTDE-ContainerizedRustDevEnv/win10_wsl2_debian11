@@ -16,6 +16,7 @@
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
         "Alla",
+        "autocrlf",
         "automount",
         "automounted",
         "bestia",
@@ -27,6 +28,7 @@
         "featurename",
         "filesystems",
         "Lxss",
+        "mssh",
         "Nazdravlje",
         "norestart",
         "Prost",
