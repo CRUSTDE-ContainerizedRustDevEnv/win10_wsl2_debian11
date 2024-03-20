@@ -246,17 +246,7 @@ sudo chmod 600 ~/.ssh/bestia_dev_luciano_bestia_ssh_1
 nano ~/.ssh/config
 ```
 
-```conf
-Host github_com_git_ssh_1
-    HostName github.com
-    User git
-    IdentityFile ~/.ssh/github_com_git_ssh_1
-
-Host bestia_dev_luciano_bestia_ssh_1
-    HostName bestia.dev
-    User luciano_bestia
-    IdentityFile ~/.ssh/bestia_dev_luciano_bestia_ssh_1
-```
+Find the config [here](ssh/config).
 
 Add `sshadd.sh` file `nano ~/.ssh/sshadd.sh` from [here](ssh/sshadd.sh)
 
@@ -266,7 +256,7 @@ Add `sshadd.sh` file `nano ~/.ssh/sshadd.sh` from [here](ssh/sshadd.sh)
 
 After putting the laptop to sleep, sometimes the WSL2 does not work right. When I need to use `localhost` or `127.0.0.1` connection from Win10 to a Linux program, the connection is broken. I have to restart the WSL in `PowerShell Run as administrator` with  
 `Get-Service LxssManager | Restart-Service`.  
-Not nice and very difficult to discover because WSL2 is running just fine, except for this.  
+Not nice and very difficult to discover because WSL2 is running just fine, except for this.
 
 ### external disk obsolete content
 
@@ -274,7 +264,7 @@ Sometimes the content of an external disk is completely wrong when looked at fro
 
 ### git repository corruption
 
-My git repository inside WSL2 got corrupted. It looks that this happens to many people on WSL2.  
+My git repository inside WSL2 got corrupted. It looks like this happens to many people on WSL2.  
 The cure is:  
 
 ```batch
