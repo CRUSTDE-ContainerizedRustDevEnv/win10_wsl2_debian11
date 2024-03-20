@@ -277,7 +277,8 @@ alias sshadd="echo sh ~/.ssh/sshadd.sh; sh ~/.ssh/sshadd.sh"
 
 ## sshadd
 
-To make it easier to add ssh keys to ssh-agent put this script in ~/.ssh/sshadd
+To make it easier to add ssh keys to ssh-agent put this script in ~/.ssh/sshadd.sh.  
+The alias `sshadd` is already in ~/.bashrc.  
 
 ```bash
 #!/bin/sh
