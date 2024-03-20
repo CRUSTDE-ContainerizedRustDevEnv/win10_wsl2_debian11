@@ -181,14 +181,14 @@ $ ls /mnt
 c  d  wsl  wslg
 
 # first check 100% that it is not mounted:
-$ umount /mnt/c
+$ sudo umount /mnt/c
 umount: /mnt/c: not mounted.
 
 # then remove the mount point:
 sudo rm -r /mnt/c
 
 # first check 100% that it is not mounted:
-$ umount /mnt/d
+$ sudo umount /mnt/d
 umount: /mnt/d: not mounted.
 
 # then remove the mount point:
