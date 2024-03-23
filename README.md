@@ -209,7 +209,7 @@ Now when starting WSL I get a stupid error:
 And I don't know from where it comes from.  
 The `appendWindowsPath` is already set to false. Usually, this is the main reason for errors like that.  
 
-## Git and SSH
+## Git and SSH on Debian
 
 Git and SSH are essential to developers. We need to securely access our remote repositories on GitHub and our production Web servers. All over SSH. The installation of Git brings SSH with it.
 Install Git in Debian:
@@ -246,9 +246,13 @@ sudo chmod 600 ~/.ssh/bestia_dev_luciano_bestia_ssh_1
 nano ~/.ssh/config
 ```
 
-Find the config [here](ssh/config).
+Find the config [here](configuration_files/debian_files/.ssh/config).
 
-Add `sshadd.sh` file `nano ~/.ssh/sshadd.sh` from [here](ssh/sshadd.sh)
+Add `sshadd.sh` file `nano ~/.ssh/sshadd.sh` from [here](configuration_files/debian_files/.ssh/sshadd.sh)
+
+## .bashrc
+
+To activate the `ssh-agent` and config other stuff on start of bash terminal start copy the file [.bashrc](configuration_files/debian_files/.bashrc) to `~/.bashrc`.
 
 ## Quirks
 
@@ -260,7 +264,7 @@ Not nice and very difficult to discover because WSL2 is running just fine, excep
 
 ### external disk obsolete content
 
-Sometimes the content of an external disk is completely wrong when looked at from the WSL2. It is obsolete, something that is a remnant of other external disks. I think I unmounted the `mnt/d` in Linux and then mount it back to solve the problem.  
+Sometimes the content of an external disk is completely wrong when looked at from the WSL2. It is obsolete, something that is a remnant of other external disks. I think I unmounted the `mnt/d` in Linux and then mounted it back to solve the problem.  
 
 ### git repository corruption
 
