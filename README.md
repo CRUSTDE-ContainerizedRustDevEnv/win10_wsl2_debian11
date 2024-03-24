@@ -58,19 +58,21 @@ Open `git-bash Run as Administrator`:
 
 ```bash
 export MSYS_NO_PATHCONV=1
-
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 # restart and update to WSL2
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-# MANDATORY RESTART YOUR MACHINE !
-# if not, the wsl --help command will not have the --set-default-version argument !
-# Set WSL2 as default
-wsl --set-default-version 2
-
 unset MSYS_NO_PATHCONV
 ```
 
-I get the error: WSL 2 requires an update to its kernel component.  
+MANDATORY RESTART YOUR MACHINE!
+if not, the wsl command will not have the --set-default-version argument!
+
+```bash
+# Set WSL2 as default
+wsl --set-default-version 2
+```
+
+I used to get the error: WSL 2 requires an update to its kernel component.  
 Visit <https://aka.ms/wsl2kernel> and do the update.  
 
 ```bash
@@ -78,8 +80,6 @@ Visit <https://aka.ms/wsl2kernel> and do the update.
 wsl --update
 # then shutdown the wsl for update to take effect
 wsl --shutdown
-# 
-wsl --list --online
 ```
 
 ## Debian11 - Bullseye
@@ -116,24 +116,6 @@ cat /etc/debian_version
 WSL2 works very fast with its own filesystem.  
 From Linux, we can access the win10 filesystem mounted on `/mnt/c/`, but this is very slow.  
 From Windows, we can access the Linux files on `\\wsl$\Debian\`.  But sometimes when we copy files, we get an additional annoying file "*.attr" for attributes that differ on the 2 filesystems. I always delete it.  
-
-## Removing Debian
-
-If you want a fresh new installation of Debian it is easy to remove the existing one in `git-bash`:
-
-```bash
-# get the exact distro name
-wsl -l -v
-wsl --unregister Debian
-```
-
-## Removing WSL2
-
-If you need to remove WSL2 open `git-bash Run as Administrator`:
-
-```bash
-Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-```
 
 ## Updates 2024 and new knowledge
 
@@ -280,6 +262,24 @@ The cure is:
 find .git/objects/ -type f -empty | xargs rm
 git fetch -p
 git fsck --full
+```
+
+## Removing Debian
+
+If you want a fresh new installation of Debian it is easy to remove the existing one in `git-bash`:
+
+```bash
+# get the exact distro name
+wsl -l -v
+wsl --unregister Debian
+```
+
+## Removing WSL2
+
+If you need to remove WSL2 open `git-bash Run as Administrator`:
+
+```bash
+Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
 ## Open-source and free as a beer
