@@ -46,7 +46,7 @@ We can finally make client programs for the browser in some "normal" programming
 Win10 is so ubiquitous that I have nothing interesting to say. It works just fine with all the drivers and peripherals and it comes preinstalled on most of the notebooks. We can say it is a winning OS in the desktop/notebook segment. In the enterprise world, Microsoft still has a firm grip with its Office suite. Blue-collar workers are just hooked to it like drug addicts even when there are good alternatives.  
 But Windows lost completely in the server segment and shamefully in the smartphone segment.  
 We "must" use it on notebooks because of the drivers, but it is slowly dying.  
-I don't have any opinion of Win11. Microsoft "promised" that Win10 was the last version of Windows and that the number will last forever and be free. In the background, there will be minor and major updates. They broke their promise. I think nobody really loves Win11.  
+I don't have any opinion of Win11. Microsoft "promised" that Win10 was the last version of Windows and that the number would last forever and be free. In the background, there will be minor and major updates. They broke their promise. I think nobody really loves Win11.  
 It looks more like they are trying to push people away from Windows on purpose.  
 
 ## Installing WSL2  
@@ -54,9 +54,11 @@ It looks more like they are trying to push people away from Windows on purpose.
 WSL2 is a revolution. With it, I have a lightweight virtual machine with a true Linux kernel. On my Lenovo notebook, I have Win10 and it works fine with all the drivers and peripherals, but now I have also Linux, so I can do some serious programming for the Linux cloud servers. Not just one Linux, I can have multiple Linux OS simultaneously on the same machine because they run in a VM.  
 Let's install/enable it on Win10:  
 <https://docs.microsoft.com/en-us/windows/wsl/install-win10#update-to-wsl-2>  
-Open `PowerShell Run as Administrator`:  
+Open `git-bash Run as Administrator`:  
 
-```powershell
+```bash
+export MSYS_NO_PATHCONV=1
+
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 # restart and update to WSL2
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
@@ -64,12 +66,14 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 # if not, the wsl --help command will not have the --set-default-version argument !
 # Set WSL2 as default
 wsl --set-default-version 2
+
+unset MSYS_NO_PATHCONV
 ```
 
 I get the error: WSL 2 requires an update to its kernel component.  
 Visit <https://aka.ms/wsl2kernel> and do the update.  
 
-```powershell
+```bash
 # I can update the wsl now
 wsl --update
 # then shutdown the wsl for update to take effect
@@ -88,16 +92,16 @@ Use the Microsoft Store to install Debian inside WSL2:
 
 <https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6>  
 
-or in PowerShell a few lines:
+or in `git-bash` a few lines:
 
-```powershell
+```bash
 # list the distros
 wsl --list --online
 # install Debian
 wsl --install -d Debian
 ```
 
-It takes a minute! Now we can open the Debian bash terminal using the provided icon or we can type `wsl` or `Debian` in the start menu, command prompt or PowerShell terminal. This Debian is without the GUI desktop. We could additionally install it, but we will rarely need it. A lot of Linux programs for programmers work just fine in the non-GUI mode inside a bash terminal.  
+It takes a minute! Now we can open the Debian bash terminal using the provided icon. This Debian is without the GUI desktop. We could additionally install it, but we will rarely need it. A lot of Linux programs for programmers work just fine in the non-GUI mode inside a bash terminal.  
 The Windows user is automatically also a Debian user.  
 
 In the bash terminal we can type these commands to update/upgrade Debian packages:  
@@ -115,9 +119,9 @@ From Windows, we can access the Linux files on `\\wsl$\Debian\`.  But sometimes 
 
 ## Removing Debian
 
-If you want a fresh new installation of Debian it is easy to remove the existing one in the `cmd prompt`:
+If you want a fresh new installation of Debian it is easy to remove the existing one in `git-bash`:
 
-```cmd
+```bash
 # get the exact distro name
 wsl -l -v
 wsl --unregister Debian
@@ -125,9 +129,9 @@ wsl --unregister Debian
 
 ## Removing WSL2
 
-If you need to remove WSL2 open `PowerShell Run as Administrator`:
+If you need to remove WSL2 open `git-bash Run as Administrator`:
 
-```powershell
+```bash
 Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
@@ -258,7 +262,7 @@ To activate the `ssh-agent` and config other stuff on start of bash terminal sta
 
 ### network connection after sleep
 
-After putting the laptop to sleep, sometimes the WSL2 does not work right. When I need to use `localhost` or `127.0.0.1` connection from Win10 to a Linux program, the connection is broken. I have to restart the WSL in `PowerShell Run as administrator` with  
+After putting the laptop to sleep, sometimes the WSL2 does not work right. When I need to use `localhost` or `127.0.0.1` connection from Win10 to a Linux program, the connection is broken. I have to restart the WSL in `git-bash Run as Administrator` with  
 `Get-Service LxssManager | Restart-Service`.  
 Not nice and very difficult to discover because WSL2 is running just fine, except for this.
 
