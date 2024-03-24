@@ -19,7 +19,7 @@ My projects on GitHub are more like a tutorial than a finished product: [bestia-
 For 30 years of my professional life, I programmed in Windows. It was good.  
 I am on a long vacation now and is time to learn something new.  
 
-This project has also a youtube video tutorial. Watch it:
+This project has also a YouTube video tutorial. Watch it:
 <!-- markdownlint-disable MD033 -->
 [<img src="https://bestia.dev/youtube/win10_wsl2_debian11.jpg" width="400px">](https://bestia.dev/youtube/win10_wsl2_debian11.html)
 <!-- markdownlint-enable MD033 -->
