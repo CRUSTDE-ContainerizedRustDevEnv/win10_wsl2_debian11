@@ -156,7 +156,7 @@ alias sshadd="echo sh ~/.ssh/sshadd.sh; sh ~/.ssh/sshadd.sh"
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="C"
 
-echo -e "  \033[33m run sh ~/rustprojects/docker_rust_development_install/rust_dev_pod_after_reboot.sh to prepare the CRUSTDE Rust Development Container after reboot.  \033[0m"
+echo -e "  \033[33m run sh ~/rustprojects/crustde_install/rust_dev_pod_after_reboot.sh to prepare the CRUSTDE Rust Development Container after reboot.  \033[0m"
 
 # . "$HOME/.cargo/env"
 
