@@ -62,25 +62,13 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 # restart and update to WSL2
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 unset MSYS_NO_PATHCONV
-```
-
-MANDATORY RESTART YOUR MACHINE!
-if not, the wsl command will not have the --set-default-version argument!
-
-```bash
 # Set WSL2 as default
 wsl --set-default-version 2
-```
-
-I used to get the error: WSL 2 requires an update to its kernel component.  
-Visit <https://aka.ms/wsl2kernel> and do the update.  
-
-```bash
 # I can update the wsl now
 wsl --update
-# then shutdown the wsl for update to take effect
-wsl --shutdown
 ```
+
+If needed restart Windows for this changes to be 100% in effect.
 
 ## Debian11 - Bullseye
 
