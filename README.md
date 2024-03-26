@@ -89,7 +89,7 @@ wsl --list --online
 wsl --install -d Debian
 ```
 
-It takes a minute! Now we can open the Debian bash terminal using the provided icon. This Debian is without the GUI desktop. We could additionally install it, but we will rarely need it. A lot of Linux programs for programmers work just fine in the non-GUI mode inside a bash terminal.  
+It takes a minute! Now we can open the Debian bash terminal using the provided "Debian" icon in Start Menu. This Debian is without the GUI desktop. We could additionally install it, but we will rarely need it. A lot of Linux programs for programmers work just fine in the non-GUI mode inside a bash terminal.  
 The Windows user is automatically also a Debian user.  
 
 In the bash terminal we can type these commands to update/upgrade Debian packages:  
