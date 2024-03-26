@@ -54,7 +54,7 @@ It looks more like they are trying to push people away from Windows on purpose.
 WSL2 is a revolution. With it, I have a lightweight virtual machine with a true Linux kernel. On my Lenovo notebook, I have Win10 and it works fine with all the drivers and peripherals, but now I have also Linux, so I can do some serious programming for the Linux cloud servers. Not just one Linux, I can have multiple Linux OS simultaneously on the same machine because they run in a VM.  
 Let's install/enable it on Win10:  
 <https://docs.microsoft.com/en-us/windows/wsl/install-win10#update-to-wsl-2>  
-Open `git-bash Run as Administrator`:  
+Open `Windows git-bash Run as Administrator`:  
 
 ```bash
 export MSYS_NO_PATHCONV=1
@@ -80,7 +80,7 @@ Use the Microsoft Store to install Debian inside WSL2:
 
 <https://www.microsoft.com/en-us/p/debian/9msvkqc78pk6>  
 
-or in `git-bash` a few lines:
+or in `Windows git-bash` a few lines:
 
 ```bash
 # list the distros
@@ -111,6 +111,23 @@ Debian is now 12 bookworm. But that doesn't change much. It is easy to uninstall
 First, store the important configuration of Debian somehow and restore it later.  
 The same commands will install the latest version. That takes just a minute! Great!.  
 
+## nano - simple editor in bash terminal
+
+I use `nano` for simple text editing. It is easy to use.  
+
+Useful functionality from the terminal and not from the editor. This works with the Windows clipboard and is used to transfer text from and to the bash terminal.
+
+- Select text with the mouse to copy. Nothing to click, just select.
+- Right-click to paste.
+
+Editor `nano` important functions:
+
+- Arrows move the cursor intuitively
+- Delete and backspace work intuitively
+- `Ctrl-K` to delete a line. Press longer to delete many lines.
+- `Ctrl-O` save file
+- `Ctrl-X` to exit
+
 ## WSL2: disable automount of Windows drives
 
 My main OS Windows can see the files inside WSL using paths like this: `\\wsl$\Debian\home\` or `\\wsl.localhost\Debian\home\`. I think this is fine. The host can see the guest.
@@ -121,12 +138,16 @@ For "security" I don't want WSL to see Windows drives, folders and files by defa
 There is a half-baked solution from Microsoft, but workable for my use case.  
 A malicious actor could still mount any Windows folder he wants if he gets admin privilege in WSL because then he can change the `/etc/wsl.conf` file.  
 This is not a good sandbox. It just makes exploits a little bit trickier, but possible nonetheless.  
-https://github.com/microsoft/WSL/issues/7236  
+<https://github.com/microsoft/WSL/issues/7236>  
 Microsoft always does everything unsafe by default! On purpose. Bad Microsoft!
 
 First, disable the `virtio9p` protocol that is used by WSL to access the files in Windows. At least I hope I understood that right.  
 
-In Windows create the file `~/.wslconfig`
+In `Windows git-bash` create the file with the command:
+
+```bash
+code ~/.wslconfig
+```
 
 ```conf
 [wsl2]
@@ -134,7 +155,11 @@ In Windows create the file `~/.wslconfig`
 virtio9p=false
 ```
 
-Second, write in the Debian file `/etc/wsl.conf`
+Second, write the file in the `Debian bash` with `nano`:
+
+```bash
+sudo nano /etc/wsl.conf
+```
 
 ```conf
 # Automatically mount Windows drive when the distribution is launched
@@ -152,8 +177,15 @@ enabled = false
 appendWindowsPath = false
 ```
 
-After `wsl --shutdown` and restart, the win drives are not automounted anymore, but the mounting points are still here.  
-It is delicate to remove a mounting point. If it is still mounted, it would delete all the data inside. Very bad design.
+For the changes to take effect, in `Windows git-bash` shutdown WSL with:
+
+```bash
+wsl --shutdown
+```
+
+After restart, the win drives are not automounted anymore, but the mounting points are still here.  
+It is delicate to remove a mounting point. If it is still mounted, it would delete all the data inside. Very bad design.  
+In Debian bash:
 
 ```bash
 ls /mnt
@@ -216,23 +248,56 @@ chmod 700 ~/.ssh
 # config appropriate security for the private key files
 sudo chmod 600 ~/.ssh/github_com_git_ssh_1
 sudo chmod 600 ~/.ssh/bestia_dev_luciano_bestia_ssh_1
-# create a config file
+```
+
+Create the file `~/.ssh/config` with [this content](configuration_files/debian_files/.ssh/config):
+
+```bash
 nano ~/.ssh/config
 ```
 
-Find the config [here](configuration_files/debian_files/.ssh/config).
+Create the file `~/.ssh/sshadd.sh` with  [this content](configuration_files/debian_files/.ssh/sshadd.sh)
 
-Add `sshadd.sh` file `nano ~/.ssh/sshadd.sh` from [here](configuration_files/debian_files/.ssh/sshadd.sh)
+```bash
+nano ~/.ssh/sshadd.sh
+```
 
 ## .bashrc
 
-To activate the `ssh-agent` and config other stuff on start of bash terminal start copy the file [.bashrc](configuration_files/debian_files/.bashrc) to `~/.bashrc`.
+To activate the `ssh-agent` and config other stuff on start of bash terminal,
+copy [this content](configuration_files/debian_files/.bashrc) to file `~/.bashrc`.  
+
+First, use `Ctrl-K` multiple times to delete all existing lines.
+
+```bash
+nano ~/.bashrc
+```
+
+## Removing Debian
+
+If you want a fresh new installation of Debian it is easy to remove the existing one in `Windows git-bash`.  
+Warning: You will lose all the content.
+
+```bash
+# get the exact distro name
+wsl -l -v
+wsl --unregister Debian
+```
+
+## Removing WSL2
+
+If you need to remove WSL2 open `Windows git-bash Run as Administrator`.  
+Warning: You will lose all the content.
+
+```bash
+Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
 
 ## Quirks
 
 ### network connection after sleep
 
-After putting the laptop to sleep, sometimes the WSL2 does not work right. When I need to use `localhost` or `127.0.0.1` connection from Win10 to a Linux program, the connection is broken. I have to restart the WSL in `git-bash Run as Administrator` with  
+After putting the laptop to sleep, sometimes the WSL2 does not work right. When I need to use `localhost` or `127.0.0.1` connection from Win10 to a Linux program, the connection is broken. I have to restart the WSL in `Windows git-bash Run as Administrator` with  
 `Get-Service LxssManager | Restart-Service`.  
 Not nice and very difficult to discover because WSL2 is running just fine, except for this.
 
@@ -250,24 +315,6 @@ The cure is:
 find .git/objects/ -type f -empty | xargs rm
 git fetch -p
 git fsck --full
-```
-
-## Removing Debian
-
-If you want a fresh new installation of Debian it is easy to remove the existing one in `git-bash`:
-
-```bash
-# get the exact distro name
-wsl -l -v
-wsl --unregister Debian
-```
-
-## Removing WSL2
-
-If you need to remove WSL2 open `git-bash Run as Administrator`:
-
-```bash
-Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
 ## Open-source and free as a beer
