@@ -173,3 +173,6 @@ stty -ixon
 bind -r "\C-s"  
 # disable ctrl-b, because I want VSCode to use it.
 bind -r "\C-b"  
+
+# shorten the prompt
+export PS1='\[\033[01;32m\]\u@WSL:Debian\[\033[01;34m\]:\w\[\033[00m\]\$ '
