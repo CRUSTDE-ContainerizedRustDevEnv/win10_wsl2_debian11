@@ -129,7 +129,7 @@ export PATH=$HOME/bin:$PATH
 SSH_ENV="$HOME/.ssh/agent-environment"
 
 function start_agent {
-    echo -e "  \033[33m Starting ssh-agent as in the background (look up with 'ps -ef')  \033[0m"
+    printf "  \033[33m Starting ssh-agent as in the background (look up with 'ps -ef')  \033[0m\n"
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
@@ -147,7 +147,7 @@ else
     start_agent;
 fi
 
-echo -e "  \033[33m Use the global command 'sshadd' to simply add your private SSH keys to ssh-agent $SSH_AGENT_PID.  \033[0m"
+printf "  \033[33m Use the global command 'sshadd' to simply add your private SSH keys to ssh-agent $SSH_AGENT_PID.  \033[0m\n"
 alias sshadd="echo sh ~/.ssh/sshadd.sh; sh ~/.ssh/sshadd.sh"
 
 # endregion: ssh-agent and sshadd
@@ -156,7 +156,7 @@ alias sshadd="echo sh ~/.ssh/sshadd.sh; sh ~/.ssh/sshadd.sh"
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="C"
 
-echo -e "  \033[33m run sh ~/rustprojects/crustde_install/crustde_pod_after_reboot.sh to prepare the CRUSTDE Rust Development Container after reboot.  \033[0m"
+printf "  \033[33m run sh ~/rustprojects/crustde_install/crustde_pod_after_reboot.sh to prepare the CRUSTDE Rust Development Container after reboot.  \033[0m\n"
 
 # . "$HOME/.cargo/env"
 
