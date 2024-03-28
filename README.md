@@ -184,27 +184,13 @@ wsl --shutdown
 ```
 
 After restart, the win drives are not automounted anymore, but the mounting points are still here.  
-It is delicate to remove a mounting point. If it is still mounted, it would delete all the data inside. Very bad design.  
 In Debian bash:
 
 ```bash
 ls /mnt
 # c  d  wsl  wslg
-
-# first check 100% that it is not mounted
-sudo umount /mnt/c
-# umount: /mnt/c: not mounted
-
-# only then remove the mount point
-sudo rm -r /mnt/c
-
-# first check 100% that it is not mounted
-sudo umount /mnt/d
-# umount: /mnt/d: not mounted
-
-# only then remove the mount point
-sudo rm -r /mnt/d
-
+rmdir /mnt/c
+rmdir/mnt/d
 # mounting points c and d are now deleted
 ls /mnt
 # wsl  wslg
