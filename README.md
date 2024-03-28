@@ -290,7 +290,7 @@ If you need to remove WSL2 open `Windows git-bash Run as Administrator`.
 Warning: You will lose all the content.
 
 ```bash
-Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+MSYS_NO_PATHCONV=1 dism.exe /online /disable-feature /featurename:Microsoft-Windows-Subsystem-Linux
 ```
 
 ## Quirks
