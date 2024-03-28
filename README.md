@@ -221,7 +221,7 @@ Git and SSH are essential to developers. We need to securely access our remote r
 Install Git in Debian:
 
 ```bash
-sudo apt install git
+sudo apt install -y git
 git --version
 # git version 2.39.2
 ssh -V
