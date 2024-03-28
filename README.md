@@ -189,8 +189,8 @@ In Debian bash:
 ```bash
 ls /mnt
 # c  d  wsl  wslg
-rmdir /mnt/c
-rmdir/mnt/d
+sudo rmdir /mnt/c
+sudo rmdir /mnt/d
 # mounting points c and d are now deleted
 ls /mnt
 # wsl  wslg
