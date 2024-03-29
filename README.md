@@ -113,12 +113,17 @@ The same commands will install the latest version. That takes just a minute! Gre
 
 ## nano - simple editor in bash terminal
 
-I use `nano` for simple text editing. It is easy to use.  
+I configured `nano` as my default editor in the bash terminal for simple text editing. It is easy to use.  
 
-Useful functionality from the terminal and not from the editor. This works with the Windows clipboard and is used to transfer text from and to the bash terminal.
+I like to use the mouse:
 
 - Select text with the mouse to copy. Nothing to click, just select.
 - Right-click to paste.
+- mouse 
+
+This works with the Windows clipboard and is used to transfer text from and to the bash terminal.
+This useful functionality comes from the terminal and not from the nano editor.
+Don't use `set mouse` in file `~/.nanorc` because it will disable this useful terminal mouse functionality.
 
 Editor `nano` important functions:
 
@@ -128,11 +133,11 @@ Editor `nano` important functions:
 - `Ctrl-O` save file
 - `Ctrl-X` to exit
 
-## WSL2: disable automount of Windows drives
+## WSL2: disable auto-mount of Windows drives
 
 My main OS Windows can see the files inside WSL using paths like this: `\\wsl$\Debian\home\` or `\\wsl.localhost\Debian\home\`. I think this is fine. The host can see the guest.
 
-I don't like that programs in WSL can see the files of my host OS Windows. The win drives are mounted like `/mnt/c/`, `/mnt/d/`,... It is called WSL automount. I want to disable that.  
+I don't like that programs in WSL can see the files of my host OS Windows. The win drives are mounted like `/mnt/c/`, `/mnt/d/`,... It is called WSL auto-mount. I want to disable that.  
 For "security" I don't want WSL to see Windows drives, folders and files by default. It is never good that the guest can see the host. This access is even read/write. Bad.
 
 There is a half-baked solution from Microsoft, but workable for my use case.  

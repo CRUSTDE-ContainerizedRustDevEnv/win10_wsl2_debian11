@@ -163,6 +163,10 @@ printf "  \033[33m run sh ~/rustprojects/crustde_install/crustde_pod_after_reboo
 export WASMTIME_HOME="$HOME/.wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
+# set nano as my default editor
+export VISUAL=nano
+export EDITOR="$VISUAL"
+
 # dev_bestia_cargo_completion
 complete -C dev_bestia_cargo_completion cargo
 
