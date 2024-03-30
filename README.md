@@ -121,10 +121,11 @@ I like to use the mouse:
 
 - Select text with the mouse to copy. Nothing to click, just select.
 - Right-click to paste.
-- mouse 
+- mouse wheel to scroll up and down
+- alt-click to move the text cursor to the mouse cursor. Nice!
 
 This works with the Windows clipboard and is used to transfer text from and to the bash terminal.
-This useful functionality comes from the terminal and not from the nano editor.
+This useful functionality comes from the Wezterm terminal and not from the nano editor.
 Don't use `set mouse` in file `~/.nanorc` because it will disable this useful terminal mouse functionality.
 
 Editor `nano` important functions:
