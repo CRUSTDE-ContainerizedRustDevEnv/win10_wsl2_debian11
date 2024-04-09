@@ -18,10 +18,6 @@
     },
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
-        "zcvf",
-        "thiserror",
-        "struct",
-        "endregion",
         "Alla",
         "autocrlf",
         "automount",
@@ -32,8 +28,10 @@
         "dism",
         "distro",
         "distros",
+        "endregion",
         "featurename",
         "filesystems",
+        "inputrc",
         "Lxss",
         "mssh",
         "MSYS",
@@ -44,11 +42,14 @@
         "rustdevuser",
         "rustlang",
         "sshadd",
+        "struct",
         "substack",
+        "thiserror",
         "Torvald",
         "virtio",
         "wslconfig",
         "wslg",
+        "zcvf",
         "zdravje"
     ]
 }

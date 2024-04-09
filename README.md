@@ -278,6 +278,15 @@ First, use `Ctrl-K` multiple times to delete all existing lines.
 nano ~/.bashrc
 ```
 
+## .inputrc
+
+Bash makes a horrible sound when using auto-completion.  
+Kill auto-completion horrible sound:
+
+```bash
+printf "set bell-style none\n" >> ~/.inputrc
+```
+
 ## Removing Debian
 
 If you want a fresh new installation of Debian it is easy to remove the existing one in `Windows git-bash`.  
