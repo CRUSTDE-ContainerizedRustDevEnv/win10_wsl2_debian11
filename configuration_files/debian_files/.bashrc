@@ -129,7 +129,7 @@ export PATH=$HOME/bin:$PATH
 SSH_ENV="$HOME/.ssh/agent-environment"
 
 function start_agent {
-    printf "  \033[33m Starting ssh-agent as in the background (look up with 'ps -ef')  \033[0m\n"
+    printf "  \033[33m Starting ssh-agent as in the background (look up with \033[32m'ps -ef'\033[33m)  \033[0m\n"
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
@@ -147,7 +147,7 @@ else
     start_agent;
 fi
 
-printf "  \033[33m Use the global command 'sshadd' to simply add your private SSH keys to ssh-agent $SSH_AGENT_PID.  \033[0m\n"
+printf "  \033[33m Use the global command \033[32m'sshadd'\033[33m to simply add your private SSH keys to ssh-agent $SSH_AGENT_PID.  \033[0m\n"
 alias sshadd="printf 'sh ~/.ssh/sshadd.sh\n'; sh ~/.ssh/sshadd.sh"
 
 # endregion: ssh-agent and sshadd
@@ -155,8 +155,6 @@ alias sshadd="printf 'sh ~/.ssh/sshadd.sh\n'; sh ~/.ssh/sshadd.sh"
 # postgresql-client needs this language variables
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="C"
-
-printf "  \033[33m run sh ~/rustprojects/crustde_install/crustde_pod_after_reboot.sh to prepare the CRUSTDE Rust Development Container after reboot.  \033[0m\n"
 
 # . "$HOME/.cargo/env"
 
@@ -179,4 +177,6 @@ bind -r "\C-s"
 bind -r "\C-b"  
 
 # shorten the prompt
-export PS1='\[\033[01;32m\]\u@WSL:Debian\[\033[01;34m\]:\w\[\033[00m\]\$ '
+export PS1='\[\033[01;32m\]\u@WSL:Debian\[\033[01;34m\]:\W\[\033[00m\]\$ '
+
+printf "  \033[33m Run \033[32m'sh ~/rustprojects/crustde_install/crustde_pod_after_reboot.sh'\033[33m to prepare the CRUSTDE Rust Development Container after reboot.  \033[0m\n"
