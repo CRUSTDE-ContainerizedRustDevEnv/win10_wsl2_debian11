@@ -245,13 +245,13 @@ Config SSH:
 ```bash
 mkdir -vp ~/.ssh
 chmod 700 ~/.ssh
-# From Windows from your encrypted vault, copy your existing ssh keys (private and public) for Github and your web server into ~/.ssh. Mine are called github_com_git_ssh_1 and bestia_dev_luciano_bestia_ssh_1. 
+# From Windows from your encrypted vault, copy your existing ssh keys (private and public) for Github and your web server into ~/.ssh. Mine are called github_com_bestia_dev_git_ssh_1 and bestia_dev_luciano_bestia_ssh_1. 
 # Windows can read/write the Linux Filesystem. Linux should NOT read/write the Windows file system. Host->Guest ok. Guest->Host no-no.
 ```
 
 ```bash
 # config appropriate security for the private key files
-sudo chmod 600 ~/.ssh/github_com_git_ssh_1
+sudo chmod 600 ~/.ssh/github_com_bestia_dev_git_ssh_1
 sudo chmod 600 ~/.ssh/bestia_dev_luciano_bestia_ssh_1
 ```
 
