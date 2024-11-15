@@ -1,0 +1,9 @@
+[core]
+  # solution when having more then one GitHub account
+  sshCommand = ssh -i ~/.ssh/github_com_GuitaraokeLeader_git_ssh_1
+  editor = nano
+  eol = lf
+  autocrlf = input
+[user]
+  email = GuitaraokeLeader@gmail.com
+  name = GuitaraokeLeader

@@ -1,0 +1,9 @@
+[core]
+  # solution when having more then one GitHub account
+  sshCommand = ssh -i ~/.ssh/github_com_bestia_dev_git_ssh_1
+  editor = nano
+  eol = lf
+  autocrlf = input
+[user]
+  email = info@bestia.dev
+  name = bestia.dev

@@ -1,3 +1,4 @@
-[user]
-	email = info@bestia.dev
-	name = luciano_bestia
+[includeIf "gitdir:/home/luciano/rustprojects/"]
+  path = .gitconfig-bestia-dev
+[includeIf "gitdir:/home/luciano/GuitaraokeLeader/"]
+  path = .gitconfig-GuitaraokeLeader
