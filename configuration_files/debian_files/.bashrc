@@ -112,57 +112,71 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# .bashrc is used by git-bash.exe to start a session
-# Here we start ssh-agent.exe in a background process that is accessible from windows.
-# It is used by ssh client, git and VSCode remote extension.
-
-# Luciano 2024-03-17: I added some commands for my configuration of git-bash (for Rust development)
+# Luciano 2023-11-13: I added some commands for my configuration of Debian (for Rust development)
 # ~/.bashrc is executed by bash for non-login interactive shells every time.  (not for login non-interactive scripts)
+# Append to ~/.bashrc
+# Then if you don't want to restart the terminal and use immediately, run
+# source ~/.bashrc
+# I tried to add this to ~/.bash_profile, but it didn't work well.
 
 alias l="ls -al"
 alias ll="ls -l"
 
+# Added to bashrc for easy sshadd and postgres
+export PATH=$HOME/bin:$PATH
+
 # region: ssh-agent and sshadd
+SSH_ENV="$HOME/.ssh/agent-environment"
 
-env=~/.ssh/agent.env
+function start_agent {
+    printf "  \033[33m Starting ssh-agent as in the background (look up with \033[32m'ps -ef'\033[33m)  \033[0m\n"
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
 
-agent_load_env () { test -f "$env" && . "$env" | /dev/null ; }
+}
 
-agent_start () {
-    (umask 077; ssh-agent >| "$env")
-    . "$env" >| /dev/null ; }
-
-agent_load_env
-
-# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
-agent_run_state=$(ssh-add -l >| /dev/null 2>&1; printf $?)
-
-if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
-    printf "  \033[33m Starting ssh-agent as a windows process in the background... \033[0m\n"
-    printf "  \033[33m Look up process in Task Manager \033[32m'powershell -Command \"Start-Process taskmgr -Verb RunAs\"' \033[0m\n"
-    agent_start
-    # printf "Setting Windows SSH user environment variables (pid: $SSH_AGENT_PID, sock: $SSH_AUTH_SOCK)\n"
-    setx SSH_AGENT_PID "$SSH_AGENT_PID" > /dev/null
-    setx SSH_AUTH_SOCK "$SSH_AUTH_SOCK" > /dev/null
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
 fi
 
-printf "  \033[33m Use this script to simply add your private SSH keys to ssh-agent $SSH_AGENT_PID: \033[0m\n"
-printf "\033[32m sshadd \033[33m\n"
-
+printf "  \033[33m Use the global command \033[32m'sshadd'\033[33m to simply add your private SSH keys to ssh-agent $SSH_AGENT_PID.  \033[0m\n"
 alias sshadd="printf 'sh ~/.ssh/sshadd.sh\n'; sh ~/.ssh/sshadd.sh"
 
 # endregion: ssh-agent and sshadd
 
-printf " \n"
+# postgresql-client needs this language variables
+export LANGUAGE="en_US.UTF-8"
+export LC_ALL="C"
 
-unset env
+# . "$HOME/.cargo/env"
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+export PATH="$WASMTIME_HOME/bin:$PATH"
 
 # set nano as my default editor
 export VISUAL=nano
 export EDITOR="$VISUAL"
 
-# shorten the prompt
-export PS1='\[\033[01;35m\]\u@git-bash\[\033[01;34m\]:\W\[\033[00m\]\$ '
+# dev_bestia_cargo_completion
+complete -C dev_bestia_cargo_completion cargo
 
-printf "  \033[33m The container CRUSTDE must be initialized once after reboot and follow instructions: \033[0m\n"
-printf "\033[32m MSYS_NO_PATHCONV=1 wsl sh /home/luciano/rustprojects/crustde_install/crustde_pod_after_reboot.sh \033[0m\n"
+# disable XON/XOFF flow control
+# because ctrl-s suddenly blocks the terminal
+# and nobody knows what really happened. This is unintuitive.
+stty -ixon
+bind -r "\C-s"  
+# disable ctrl-b, because I want VSCode to use it.
+bind -r "\C-b"  
+
+# shorten the prompt
+export PS1='\[\033[01;32m\]\u@WSL:Debian\[\033[01;34m\]:\W\[\033[00m\]\$ '
+
+printf "  \033[33m Run \033[32m'sh ~/rustprojects/crustde_install/crustde_pod_after_reboot.sh'\033[33m to prepare the CRUSTDE Rust Development Container after reboot.  \033[0m\n"
