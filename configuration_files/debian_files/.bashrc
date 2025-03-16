@@ -8,20 +8,13 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+HISTCONTROL=ignorespace:ignoredups:erasedups
+HISTIGNORE='ls:bg:fg:history'
+# Prepend permanently stored commands into history. These are manually maintained, because they are often used.
+cat  ~/.bash_history ~/.bash_history_permanent > ~/.bash_history_tmp 2>/dev/null
+# deduplicate, but preserve order
+awk '!a[$0]++' ~/.bash_history_tmp > ~/.bash_history
+rm ~/.bash_history_tmp
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -179,4 +172,6 @@ bind -r "\C-b"
 # shorten the prompt
 export PS1='\[\033[01;32m\]\u@WSL:Debian\[\033[01;34m\]:\W\[\033[00m\]\$ '
 
-printf "  \033[33m Run \033[32m'sh ~/rustprojects/crustde_install/crustde_pod_after_reboot.sh'\033[33m to prepare the CRUSTDE Rust Development Container after reboot.  \033[0m\n"
+printf "  \033[33m The container CRUSTDE must be initialized once after reboot and then follow instructions: \033[0m\n"
+printf "\033[32m sshadd crustde \033[33m\n"
+printf "\033[32m sh ~/rustprojects/crustde_install/crustde_pod_after_reboot.sh \033[0m\n"
