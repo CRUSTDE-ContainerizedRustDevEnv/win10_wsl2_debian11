@@ -12,7 +12,7 @@
  ![License](https://img.shields.io/badge/license-MIT-blue.svg)
  ![win10_wsl2_debian11](https://bestia.dev/webpage_hit_counter/get_svg_image/556625040.svg)
 
- ![logo](https://raw.githubusercontent.com/CRUSTDE-ContainerizedRustDevEnv/CRUSTDE_Containerized_Rust_DevEnv/main/images/crustde_250x250.png)  
+ ![logo](https://raw.githubusercontent.com/CRUSTDE-ContainerizedRustDevEnv/.github/main/images/crustde_250x250.png)  
  win10_wsl2_debian11 is a member of the [CRUSTDE-ContainerizedRustDevEnv](https://github.com/orgs/CRUSTDE-ContainerizedRustDevEnv/repositories?q=sort%3Aname-asc) project.
 
  [![Lines in md](https://img.shields.io/badge/Lines_in_markdown-338-green.svg)](https://github.com/CRUSTDE-ContainerizedRustDevEnv/win10_wsl2_debian11/)
