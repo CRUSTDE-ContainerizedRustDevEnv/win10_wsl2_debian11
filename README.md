@@ -121,6 +121,7 @@ Debian 13 is now Trixie.
 Debian philosofy is to be super stable. But I can experiment just a little bit and replace some GNU tools with new Rust applications.
 <https://github.com/CRUSTDE-ContainerizedRustDevEnv/win10_wsl2_debian11/blob/main/fresh_editor.md>
 <https://github.com/CRUSTDE-ContainerizedRustDevEnv/win10_wsl2_debian11/blob/main/uutils_rust_coreutils.md>
+<https://github.com/CRUSTDE-ContainerizedRustDevEnv/win10_wsl2_debian11/blob/main/sudo-rs.md>
 <https://github.com/CRUSTDE-ContainerizedRustDevEnv/win10_wsl2_debian11/blob/main/WSL2_Cosmic_Desktop.md>
 
 ## nano - simple editor in bash terminal
