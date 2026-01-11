@@ -115,6 +115,14 @@ Debian is now 12 bookworm. But that doesn't change much. It is easy to uninstall
 First, store the important configuration of Debian somehow and restore it later.  
 The same commands will install the latest version. That takes just a minute! Great!.  
 
+## Update 2026
+
+Debian 13 is now Trixie.  
+Debian philosofy is to be super stable. But I can experiment just a little bit and replace some GNU tools with new Rust applications.
+<https://github.com/CRUSTDE-ContainerizedRustDevEnv/win10_wsl2_debian11/blob/main/fresh_editor.md>
+<https://github.com/CRUSTDE-ContainerizedRustDevEnv/win10_wsl2_debian11/blob/main/uutils_rust_coreutils.md>
+<https://github.com/CRUSTDE-ContainerizedRustDevEnv/win10_wsl2_debian11/blob/main/WSL2_Cosmic_Desktop.md>
+
 ## nano - simple editor in bash terminal
 
 I configured `nano` as my default editor in the bash terminal for simple text editing. It is easy to use.  
