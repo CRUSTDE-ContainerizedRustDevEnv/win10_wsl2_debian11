@@ -174,4 +174,6 @@ export PS1='\[\033[01;32m\]\u@WSL:Debian\[\033[01;34m\]:\W\[\033[00m\]\$ '
 
 printf "  \033[33m The container CRUSTDE must be initialized once after reboot and then follow instructions: \033[0m\n"
 printf "\033[32m sshadd crustde \033[33m\n"
+printf "\033[32m podman ps -a \033[33m\n"
+printf "  \033[33m If needed: \033[0m\n"
 printf "\033[32m sh ~/rustprojects/crustde_install/crustde_pod_after_reboot.sh \033[0m\n"
